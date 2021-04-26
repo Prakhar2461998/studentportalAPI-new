@@ -1,0 +1,20 @@
+{
+  "name": "studentportal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aes-256-gcm": "^1.0.3",
+    "express": "^4.17.1",
+    "generate-password": "^1.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.5",
+    "nodemailer": "^6.5.0",
+    "nodemon": "^2.0.7"
+  }
+}
