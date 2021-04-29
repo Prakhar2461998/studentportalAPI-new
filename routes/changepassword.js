@@ -5,6 +5,4 @@ router.post("/", (req,res)=>{
     res.send('Change Password ');
 })
 
-
-
 module.exports=router;

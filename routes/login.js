@@ -28,7 +28,6 @@ router.post('/', (req,res)=>{
                
            var accesstoken= jwt.sign({
                Student:Student
-
             },
             'secret',
             {

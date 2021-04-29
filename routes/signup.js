@@ -10,7 +10,6 @@ require('../db/conn');
 const router=express.Router();
 
 router.post('/',(req,res)=>{
-
   console.log("entered insdie the post")
     const studentInfo = new Student(req.body); 
     console.log(studentInfo);
