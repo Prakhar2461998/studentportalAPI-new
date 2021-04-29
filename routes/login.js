@@ -33,12 +33,16 @@ router.post('/', (req,res)=>{
             'secret',
             {
                 expiresIn:"1h"
-            }
+            },
+            
             )
+            res.cookie('jwt', accesstoken , {httpOnly:true , maxAge:1000});  
            res.status(200).json({
                message:'User found',
-                accesstoken:accesstoken
+                accesstoken:accesstoken,
+                
             })
+                    
           
         }
 

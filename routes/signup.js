@@ -9,9 +9,9 @@ require('../db/conn');
 
 const router=express.Router();
 
-router.post('/', authCheck,(req,res)=>{
+router.post('/',(req,res)=>{
 
-
+  console.log("entered insdie the post")
     const studentInfo = new Student(req.body); 
     console.log(studentInfo);
     
