@@ -1,18 +1,20 @@
 const express= require('express');
 const router=express.Router();
+const Aes = require('aes-256-gcm');
 const jwt=require('jsonwebtoken');
+const Student = require('../models/students');
 
 router.post("/", (req,res)=>{
     
     var EmailAddress= req.body.EmailAddress;
-    Student.findOne({EmailAddress}, function(err,user){
+    Student.findOne({EmailAddress}, function(err,studentInfo){
       if(err)
       {
         console.log(err);
         return res.status(500).send();
       }
-      else if(!user){
-        console.log(user);
+      else if(!studentInfo){
+      
         return res.send(404).send();
       }
       else{
@@ -22,13 +24,11 @@ router.post("/", (req,res)=>{
           numbers: true
       });
       console.log("Befor encrp======",password)
-      const Cryptr = require('cryptr');
-      const cryptr = new Cryptr('myTotalySecretKey');
-      const encryptedString = cryptr.encrypt(password);
-      const decryptedString = cryptr.decrypt(encryptedString);
-      console.log(encryptedString);
-      user.password= encryptedString;
-      const dec = decryptedString;
+      const SHARED_SECRET = '12345678901234567890123456789012';
+      let { ciphertext, iv, tag } = Aes.encrypt(password, SHARED_SECRET);
+      console.log(ciphertext,"cypher")
+      studentInfo.password=ciphertext;
+      let cleartext = Aes.decrypt(ciphertext, iv, tag, SHARED_SECRET)
            //node
      const nodemailer = require("nodemailer");
   
@@ -65,8 +65,8 @@ router.post("/", (req,res)=>{
      main().catch(console.error);
     
         //codeeeeee 
-        user.save().then(()=>{
-            res.status(201).send(user);
+        studentInfo.save().then(()=>{
+            res.status(201).send(studentInfo);
         }).catch((e)=>{
             res.status(400).send(e);
         })
