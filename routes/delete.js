@@ -8,7 +8,7 @@ router.delete("/:id", (req,res)=>{
     if(err)
      throw err;
     
-     res.send("Successfuly deleted")
+     res.send("Successfuly deleted");
    } )
 })
 module.exports=router;

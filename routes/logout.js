@@ -5,7 +5,8 @@ const jwt=require('jsonwebtoken');
 router.post("/", (req,res)=>{
 
 res.cookie('jwt',' ', {maxAge: 1});
-res.status(200).send('YOou have been logged out');
+res.status(200).send('You have been logged out');
+
 })
 
 module.exports=router;

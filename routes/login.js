@@ -15,17 +15,14 @@ router.post('/', (req,res)=>{
     .then(Student =>{
 
              if(Student==null)
-
              {
-                     res.status(404).json({
+                res.status(404).json({
 
-                        message:'Auth Failed'
-                     })
+                message:'Auth Failed'
+             })
 
              }
-             else{
-
-               
+             else{               
            var accesstoken= jwt.sign({
                Student:Student
             },
@@ -43,13 +40,11 @@ router.post('/', (req,res)=>{
             })
                     
           
-        }
+         }
 
     })
     .catch(err=>{
         res.send(err)
     })
- 
-
 });
 module.exports=router;
